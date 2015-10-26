@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Laravel</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -9,7 +9,6 @@
         html, body {
             height: 100%;
         }
-
         body {
             margin: 0;
             padding: 0;
@@ -18,18 +17,15 @@
             font-weight: 100;
             font-family: 'Lato';
         }
-
         .container {
             text-align: center;
             display: table-cell;
             vertical-align: middle;
         }
-
         .content {
             text-align: center;
             display: inline-block;
         }
-
         .title {
             font-size: 96px;
         }
@@ -38,22 +34,28 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">Login</div>
-        <form>
+        <div class="title">Login Page</div>
+        <br />
+        <form method="post" action="{{route('auth.postLogin')}}">
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="form-group">
-                <label for="email" >Email address:</label>
+                <label for="email">Email address:</label>
                 <input type="email" class="form-control" id="email" name="email">
             </div>
+
             <div class="form-group">
-                <label for="password" >Email address:</label>
-                <input type="password" class="form-control" id="email" name="password">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password">
             </div>
+
             <div class="checkbox">
                 <label><input type="checkbox"> Remember me</label>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default">Login</button>
             <button type="reset" class="btn btn-default">Reset</button>
+
         </form>
+
     </div>
 </div>
 </body>

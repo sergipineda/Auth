@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,31 +9,26 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login',['as' => 'auth.login','uses' => 'LoginController@getLogin']);
+Route::post('/postLogin',['as' => 'auth.postLogin','uses' => 'LoginController@postLogin']);
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function () {
+Route::get('/home', ['as' => 'auth.home', function () {
     return view('home');
-});
+}]);
 Route::get('/', function () {
     \Debugbar::startMeasure("resource");
     $authenticated= false;
     Session::set ('authenticated', false);
-   // dd (Session::all());
-    \Debugbar::info("Xivato1!!!");
-    \Debugbar::info(Session::all());
+    // dd (Session::all());
+    // \Debugbar::info("Xivato1!!!");
+    //\Debugbar::info(Session::all());
     if (Session::has ('authenticated')){
-     if (Session::get ('authenticated')== true) {
-
-         $authenticated = true;
-     }
+        if (Session::get ('authenticated')== true) {
+            $authenticated = true;
+        }
     }
-
     if ($authenticated){
         \Debugbar::stopMeasure("resource");
         return view('resource');
